@@ -1,7 +1,7 @@
-﻿function theSafe() {
+﻿function elf() {
     const currentLock = Lock()
 
-    function dial(turns) {
+    function instructions(turns) {
         let rotation = +turns.substring(1)
         if (rotation > 99) {
             const rotations = Math.floor(rotation / 100);
@@ -19,7 +19,7 @@
         return currentLock.position();
     }
 
-    return {dial, password: () => currentLock.password(), dialPosition: () => currentLock.position()};
+    return {dial: instructions, password: () => currentLock.password(), dialPosition: () => currentLock.position()};
 }
 
 function Lock() {
@@ -60,4 +60,4 @@ function Lock() {
 }
 
 
-export default theSafe;
+export default elf;

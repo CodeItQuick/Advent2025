@@ -1,5 +1,5 @@
 ﻿import assert from 'node:assert';
-import theSafe from "../src/theVault.js";
+import elf from "../src/theVault.js";
 
 describe('the dial', () => {
     [
@@ -21,47 +21,47 @@ describe('the dial', () => {
     { rotate: 'R10', answer: 60, password: 0 },
     ].forEach(({ rotate, answer, password}) => {
         it(`when starting at 50 when ${rotate} should return ${answer}`, () => {
-            const { dial, password: currentPassword, dialPosition } = theSafe();
+            const { dial, password: currentPassword, dialPosition } = elf();
             assert.equal(dial(rotate), answer);
             assert.equal(currentPassword(), password)
             assert.equal(dialPosition(), answer)
         });
     })
     it('when starting at 50 when L68 and then L30 should return 52', () => {
-        const { dial } = theSafe();
+        const { dial } = elf();
         assert.equal(dial("L68"), 82);
         assert.equal(dial("L30"), 52)
     });
     it('when starting at 1 when L1 should return 0', () => {
-        const { dial } = theSafe();
+        const { dial } = elf();
         assert.equal(dial("L49"), 1);
         assert.equal(dial("L1"), 0)
     });
     it('when starting at 99 when R1 should return 0', () => {
-        const { dial } = theSafe();
+        const { dial } = elf();
         assert.equal(dial("R49"), 99);
         assert.equal(dial("R1"), 0)
     });
     it('when starting at 50 when L68 and then L30 then R48 should return 52', () => {
-        const { dial } = theSafe();        assert.equal(dial("L68"), 82);
+        const { dial } = elf();        assert.equal(dial("L68"), 82);
         assert.equal(dial("L30"), 52)
         assert.equal(dial("R48"), 0)
     });
     it('when starting at 50 when L68 and then L30 then R48 then L5 should return 95', () => {
-        const { dial } = theSafe();        assert.equal(dial("L68"), 82);
+        const { dial } = elf();        assert.equal(dial("L68"), 82);
         assert.equal(dial("L30"), 52)
         assert.equal(dial("R48"), 0)
         assert.equal(dial("L5"), 95)
     });
     it('when starting at 50 when L68 and then L30 then R48 then L5 then R60 should return 95', () => {
-        const { dial } = theSafe();        assert.equal(dial("L68"), 82);
+        const { dial } = elf();        assert.equal(dial("L68"), 82);
         assert.equal(dial("L30"), 52)
         assert.equal(dial("R48"), 0)
         assert.equal(dial("L5"), 95)
         assert.equal(dial("R60"), 55)
     });
     it('when starting at 50 when L68 and then L30 then R48 then L5 then R60 then L55 should return 95', () => {
-        const { dial } = theSafe();        assert.equal(dial("L68"), 82);
+        const { dial } = elf();        assert.equal(dial("L68"), 82);
         assert.equal(dial("L30"), 52)
         assert.equal(dial("R48"), 0)
         assert.equal(dial("L5"), 95)
@@ -69,7 +69,7 @@ describe('the dial', () => {
         assert.equal(dial("L55"), 0)
     });
     it('when starting at 50 when executing the full sequence then L1 should return 32 with a password of 3', () => {
-        const { dial, password } = theSafe();
+        const { dial, password } = elf();
         assert.equal(dial("L68"), 82);
         assert.equal(password(), 1);
         assert.equal(dial("L30"), 52);

@@ -1,7 +1,7 @@
 ﻿import sequence from "./sequence.js";
-import theSafe from "./theVault.js";
+import elf from "./theVault.js";
 
-const safe = theSafe();
+const safe = elf();
 let entryNum = 0;
 for (const entry of sequence.split('\n')) {
     entryNum++;
