@@ -1,40 +1,63 @@
 ﻿function theSafe() {
-    let currentDialPosition = 50;
-    let currentPassword = 0;
+    const currentLock = Lock()
 
     function dial(turns) {
         let rotation = +turns.substring(1)
         if (rotation > 99) {
-            currentPassword = currentPassword + Math.floor(rotation / 100);
+            const rotations = Math.floor(rotation / 100);
+            for (let i = 0; i < rotations; i++) {
+                currentLock.fullTurn();
+            }
             rotation = rotation % 100;
         }
         if (turns.startsWith('L')) {
-            if (rotation > currentDialPosition) {
-                if (currentDialPosition !== 0) {
-                    currentPassword++;
-                }
-                currentDialPosition = 100 - Math.abs(currentDialPosition - rotation);
-                return currentDialPosition
-            } else {
-                currentDialPosition = currentDialPosition - rotation
-            }
-        } else if (rotation + currentDialPosition >= 100) {
-            currentDialPosition = rotation + currentDialPosition - 100;
-            currentPassword++;
-            if (currentDialPosition === 100) {
-                return currentDialPosition = 0;
-            }
-            return currentDialPosition
-        } else {
-            currentDialPosition = currentDialPosition + rotation;
+            currentLock.rotateLeft(rotation)
+        } else  {
+            currentLock.rotateRight(rotation)
         }
-        if (currentDialPosition === 0) {
-            currentPassword++;
-        }
-        return currentDialPosition;
+
+        return currentLock.position();
     }
 
-    return {dial, password: () => currentPassword, dialPosition: () => currentDialPosition};
+    return {dial, password: () => currentLock.password(), dialPosition: () => currentLock.position()};
 }
+
+function Lock() {
+    let position = 50;
+    let currentPassword = 0;
+    function fullTurn() {
+        currentPassword++;
+    }
+    function rotateLeft(rotateAmount) {
+        if (rotateAmount > position) {
+            if (position !== 0) {
+                currentPassword++;
+            }
+            position = 100 - Math.abs(position - rotateAmount);
+            return position
+        } else {
+            position = position - rotateAmount
+            if (position === 0) {
+                currentPassword++;
+            }
+        }
+    }
+    function rotateRight(rotateAmount) {
+        if (rotateAmount + position >= 100) {
+            position = rotateAmount + position - 100;
+            currentPassword++;
+            if (position === 100) {
+                return position = 0;
+            }
+            return position
+        } else {
+            position = position + rotateAmount;
+        }
+    }
+
+    return { fullTurn, rotateLeft, rotateRight, password: () => currentPassword, position: () => position}
+
+}
+
 
 export default theSafe;
