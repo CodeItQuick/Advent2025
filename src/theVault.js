@@ -27,9 +27,10 @@ function Lock() {
             position = position + rotateAmount;
             if (position === 0) {
                 return 1;
-            } else {
-                return 0;
             }
+
+            return 0;
+
         } else {
             let passedZero = 0;
             if (rotateAmount + position >= 100 || rotateAmount + position < 0 && position !== 0) {
@@ -41,7 +42,7 @@ function Lock() {
         }
     }
 
-    return { rotate, password: () => currentPassword, position: () => position}
+    return { rotate, position: () => position}
 
 }
 
