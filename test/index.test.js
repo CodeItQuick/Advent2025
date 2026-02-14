@@ -68,7 +68,7 @@ describe('the dial', () => {
         assert.equal(dial("R60"), 55)
         assert.equal(dial("L55"), 0)
     });
-    it('when starting at 50 when executing the full sequence then L1 should return 32 with a password of 3', () => {
+    it('when starting at 50 when executing the full sequence then L1 should return 32 with a password of 6', () => {
         const { dial, password } = elf();
         assert.equal(dial("L68"), 82);
         assert.equal(password(), 1);
