@@ -3,14 +3,14 @@ import elf from "../src/theVault.js";
 
 describe('the dial', () => {
     [
-    // { rotate: 'L68', answer: 82, password: 1 },
-    // { rotate: 'L75', answer: 75, password: 1 },
-    // { rotate: 'L175', answer: 75, password: 2 },
-    // { rotate: 'L275', answer: 75, password: 3 },
-    // { rotate: 'L125', answer: 25, password: 1 },
-    // { rotate: 'R175', answer: 25, password: 2 },
-    // { rotate: 'R501', answer: 51, password: 5 },
-    // { rotate: 'L150', answer: 0, password: 2 },
+    { rotate: 'L68', answer: 82, password: 1 },
+    { rotate: 'L75', answer: 75, password: 1 },
+    { rotate: 'L175', answer: 75, password: 2 },
+    { rotate: 'L275', answer: 75, password: 3 },
+    { rotate: 'L125', answer: 25, password: 1 },
+    { rotate: 'R175', answer: 25, password: 2 },
+    { rotate: 'R501', answer: 51, password: 5 },
+    { rotate: 'L150', answer: 0, password: 2 },
     { rotate: 'R150', answer: 0, password: 2 },
     { rotate: 'R125', answer: 75, password: 1 },
     { rotate: 'R50', answer: 0, password: 1 },
