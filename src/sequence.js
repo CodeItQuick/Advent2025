@@ -4039,7 +4039,6 @@ R2
 R36
 L30
 L16
-L17
-`;
+L17`;
 
 export default sequence;
