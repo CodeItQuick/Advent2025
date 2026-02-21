@@ -26,15 +26,17 @@ function Lock() {
     function rotate(rotateAmount) {
         let overRotation = 0;
         let passedZero = 0;
-        if (rotateAmount + position >= 100 || rotateAmount + position < 0) {
-            if (position !== 0) {
-                passedZero++;
-            }
+        const startAtZero = position === 0;
+        const overRotated = rotateAmount + position >= 100 || rotateAmount + position < 0;
+        if (overRotated) {
             overRotation = rotateAmount > 0 ? -100 : 100;
-        } else if (rotateAmount + position === 0) {
-            passedZero++;
         }
         position = position + rotateAmount + overRotation;
+        if (!startAtZero && overRotated) {
+            passedZero++;
+        } else if (position === 0) {
+            passedZero++;
+        }
 
         return passedZero;
     }
