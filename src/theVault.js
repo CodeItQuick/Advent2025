@@ -22,27 +22,24 @@
 
 function Lock() {
     let position = 50;
+
     function rotate(rotateAmount) {
-        if (rotateAmount + position >= 0 && rotateAmount + position < 100) {
-            position = position + rotateAmount;
-            if (position === 0) {
-                return 1;
-            }
-
-            return 0;
-
-        } else {
-            let passedZero = 0;
-            if (rotateAmount + position >= 100 || rotateAmount + position < 0 && position !== 0) {
+        let overRotation = 0;
+        let passedZero = 0;
+        if (rotateAmount + position >= 100 || rotateAmount + position < 0) {
+            if (position !== 0) {
                 passedZero++;
             }
-            const overRotation = rotateAmount > 0 ? -100 : 100;
-            position = position + rotateAmount + overRotation;
-            return passedZero;
+            overRotation = rotateAmount > 0 ? -100 : 100;
+        } else if (rotateAmount + position === 0) {
+            passedZero++;
         }
+        position = position + rotateAmount + overRotation;
+
+        return passedZero;
     }
 
-    return { rotate, position: () => position}
+    return {rotate, position: () => position}
 
 }
 
