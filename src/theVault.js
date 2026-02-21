@@ -32,9 +32,7 @@ function Lock() {
             overRotation = rotateAmount > 0 ? -100 : 100;
         }
         position = position + rotateAmount + overRotation;
-        if (!startAtZero && overRotated) {
-            passedZero++;
-        } else if (position === 0) {
+        if (!startAtZero && overRotated || position === 0) {
             passedZero++;
         }
 
